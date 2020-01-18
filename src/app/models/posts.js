@@ -30,7 +30,7 @@ const postSchema = new Schema({
 
 postSchema.pre("save", () => {
     if (!this.url) {
-        this.url = `http://localhost:301/files/${this.img}`;
+        this.url = `https://arcane-wave-67261.herokuapp.com/files/${this.img}`;
     }
 });
 

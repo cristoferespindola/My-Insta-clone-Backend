@@ -1,5 +1,5 @@
 const users = require("../models/users")
-// require('dotenv').config()
+require('dotenv').config()
 const jwt = require('jsonwebtoken')
 const secret = process.env.AUTH || "secret"
 
