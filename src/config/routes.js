@@ -22,7 +22,7 @@ routes.post(
     "/posts",
     authMiddlewares,
     upload.single("photo"),
-    postsController.store
+    postsController.store.bind(null)
 )
 
 

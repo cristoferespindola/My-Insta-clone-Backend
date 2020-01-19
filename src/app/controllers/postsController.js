@@ -10,7 +10,7 @@ const store = async(req, res) => {
         try {
             const { key } = req.file
             const { location: url = "" } = req.file
-            const { description } = req.body
+            const { description } = req.body            
 
             const post = await posts.create({
                 img: key,
