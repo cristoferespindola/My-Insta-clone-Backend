@@ -8,7 +8,6 @@ const path = require("path")
 const morgan = require("morgan")
 const port = process.env.PORT || 3001
 
-
 const app = express()
 
 app.use(cors())
