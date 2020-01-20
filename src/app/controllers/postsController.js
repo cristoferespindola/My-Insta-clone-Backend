@@ -32,7 +32,8 @@ const remove = async(req, res) => {
         if(err){
             console.log(err)
         }
-    })    
+    })
+    res.status(204).end();    
     } 
 
 
