@@ -3,7 +3,7 @@ require("dotenv").config();
 const secret = process.env.AUTH || "secret"
 
 module.exports = (req, res, next) => {
-    const authHeader = req.headers.authorization;
+    const authHeader = req.headers.authorization || req.body.headers.Authorization;    
 
     if (!authHeader) return res.status(401).send({ erro: "No token provided" });
 

@@ -28,8 +28,11 @@ const store = async(req, res) => {
         }
     }
 const remove = async(req, res) => {
-    await posts.deleteOne({_id: req.body.id})
-    res.status(204).end();
+    await posts.deleteOne({_id: req.params.id}, (err)=>{
+        if(err){
+            console.log(err)
+        }
+    })    
     } 
 
 
