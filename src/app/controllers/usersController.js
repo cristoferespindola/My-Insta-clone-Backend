@@ -1,9 +1,7 @@
-const users = require("../models/users")
-require("dotenv").config()
-const jwt = require("jsonwebtoken")
-
-const img =
-    "https://avataaars.io/?avatarStyle=Circle&topType=ShortHairShaggyMullet&accessoriesType=Prescription02&hairColor=Blonde&facialHairType=BeardMagestic&facialHairColor=Brown&clotheType=BlazerSweater&clotheColor=PastelYellow&eyeType=Cry&eyebrowType=RaisedExcited&mouthType=Concerned&skinColor=Pale"
+const users = require('../models/users')
+require('dotenv').config()
+const jwt = require('jsonwebtoken')
+const crypto = require('crypto')
 
 const index = async (req, res) => {
     const userId = req.userId
@@ -31,6 +29,9 @@ const show = async (req, res) => {
 const save = async (req, res) => {
     try {
         const { username, name, email, password } = req.body
+        
+        const hash = crypto.createHash('md5').update(email).digest("hex");
+        const img = `https://www.gravatar.com/avatar/${hash.toString()}.jpg`
 
         if (
             (await users.findOne({ username })) ||
@@ -38,12 +39,12 @@ const save = async (req, res) => {
         ) {
             return res
                 .status(400)
-                .send({ error: "Username or E-mail already exists" })
+                .send({ error: 'Username or E-mail already exists' })
         }
 
         if (!name || !password)
             res.status(400).send({
-                error: "Fill in the fields"
+                error: 'Fill in the fields'
             })
 
         const user = await users.create({
@@ -63,7 +64,7 @@ const save = async (req, res) => {
         return res.status(200).json({ user, token })
     } catch (err) {
         console.log(err)
-        res.status(400).send({ error: "Registration fail" })
+        res.status(400).send({ error: 'Registration fail' })
     }
 }
 

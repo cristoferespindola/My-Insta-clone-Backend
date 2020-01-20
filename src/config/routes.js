@@ -18,6 +18,7 @@ routes.put("/userupdate", authMiddlewares, userController.update.bind(null))
 routes.post("/auth", authController.authenticate.bind(null))
 
 routes.get("/posts", authMiddlewares, postsController.index.bind(null))
+routes.delete("/deletepost/:id", authMiddlewares, postsController.remove.bind(null))
 routes.post(
     "/posts",
     authMiddlewares,

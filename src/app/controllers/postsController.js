@@ -27,9 +27,13 @@ const store = async(req, res) => {
             return res.status(400).send({ error: "Error" })
         }
     }
+const remove = async(req, res) => {
+    await posts.deleteOne({_id: req.body.id})
+    } 
 
 
 module.exports = {
     index,
-    store
+    store,
+    remove
 }

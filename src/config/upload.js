@@ -6,20 +6,10 @@ const multerS3 = require("multer-s3")
 const aws = require("aws-sdk")
 
 const s3 = new aws.S3({
-	accessKeyId: 'AKIAIZ4YWPA6WISG3E3A',
-	secretAccessKey: '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',
+	accessKeyId: 'AKIARV3GSKV7PSBOPMYX',
+	secretAccessKey: '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',
 	Bucket: 'my-insta-test'
 });
-
-aws.config.getCredentials(function(err) {
-    if (err) console.log(err.stack);
-    // credentials not loaded
-    else {
-      console.log("Access key:", aws.config.credentials.accessKeyId);
-      console.log("Secret access key:", aws.config.credentials.secretAccessKey);
-    }
-  });
-
 
 const storageTypes = {
     local: multer.diskStorage({
