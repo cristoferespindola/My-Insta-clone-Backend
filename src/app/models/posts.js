@@ -1,4 +1,4 @@
-const { Schema, model } = require("mongoose");
+const { Schema, model } = require('mongoose')
 
 const postSchema = new Schema({
     img: String,
@@ -16,7 +16,7 @@ const postSchema = new Schema({
     author: [
         {
             type: Schema.Types.ObjectId,
-            ref: "users",
+            ref: 'users',
             required: true
         },
 
@@ -26,12 +26,12 @@ const postSchema = new Schema({
             }
         }
     ]
-});
+})
 
-postSchema.pre("save", () => {
+postSchema.pre('save', () => {
     if (!this.url) {
-        this.url = `http://localhost:3001/files/${this.img}`;
+        this.url = `http://localhost:3001/uploads/${this.img}`
     }
-});
+})
 
-module.exports = model("posts", postSchema);
+module.exports = model('posts', postSchema)

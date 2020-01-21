@@ -1,15 +1,15 @@
-const posts = require("../models/posts")
+const posts = require('../models/posts')
 
 const index = async(req, res) => {
         const post = await posts.find()
-            .populate("author")
+            .populate('author')
             .sort({ createAt: -1 })
         return res.json(post)
     }
 const store = async(req, res) => {
         try {
             const { key } = req.file
-            const { location: url = "" } = req.file
+            const { location: url = '' } = req.file
             const { description } = req.body 
 
             const post = await posts.create({
@@ -19,12 +19,12 @@ const store = async(req, res) => {
                 author: req.userId
             })
 
-            await post.populate("author").execPopulate()
+            await post.populate('author').execPopulate()
 
             return res.json(post)
         } catch (err) {
             console.log(err)
-            return res.status(400).send({ error: "Error" })
+            return res.status(400).send({ error: 'Error' })
         }
     }
 const remove = async(req, res) => {

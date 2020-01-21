@@ -1,14 +1,14 @@
-const users = require("../models/users")
+const users = require('../models/users')
 require('dotenv').config()
 const jwt = require('jsonwebtoken')
-const secret = process.env.AUTH || "secret"
+const secret = process.env.AUTH
 
 const authenticate = async (req, res) => {
     const { username, password } = req.body
 
-    const user = await users.findOne({ username }).select("+password")
+    const user = await users.findOne({ username }).select('+password')
 
-    if (!user) res.status(400).send({ error: "User not found :(" })
+    if (!user) res.status(400).send({ error: 'User not found :(' })
 
     user.password = undefined
 

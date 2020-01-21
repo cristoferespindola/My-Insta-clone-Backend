@@ -30,7 +30,7 @@ const save = async (req, res) => {
     try {
         const { username, name, email, password } = req.body
         
-        const hash = crypto.createHash('md5').update(email).digest("hex");
+        const hash = crypto.createHash('md5').update(email).digest('hex');
         const img = `https://www.gravatar.com/avatar/${hash.toString()}.jpg`
 
         if (
